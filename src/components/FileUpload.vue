@@ -1,17 +1,9 @@
 <template>
   <div class="file-upload-wrapper">
-    <FileUploadForm
-      header="Adicione o arquivo:"
-      buttonText="Escolher Arquivo"
-      uploadButtonText="Mostrar dados"
-      errorMessage="Por favor, adicione o formato correto (.xlsx ou .csv)."
-      inputId="file-input"
-      :handleFileUpload="handleFileUpload"
-      :uploadFile="uploadFile"
-      :file="file"
-      :lastUploadedFileName="lastUploadedFileName"
-      :invalidFileFormat="invalidFileFormat"
-    />
+    <FileUploadForm header="Adicione o arquivo:" buttonText="Escolher Arquivo" uploadButtonText="Mostrar dados"
+      errorMessage="Por favor, adicione o formato correto (.xlsx ou .csv)." inputId="file-input"
+      :handleFileUpload="handleFileUpload" :uploadFile="uploadFile" :file="file"
+      :lastUploadedFileName="lastUploadedFileName" :invalidFileFormat="invalidFileFormat" />
 
     <div v-if="!response">
       <div class="dashboard">
@@ -108,7 +100,7 @@ export default {
       const newFile = event.target.files[0];
       if (newFile) {
         if (newFile.name.endsWith('.xlsx') || newFile.name.endsWith('.csv')) {
-          this.invalidFileFormat = false; 
+          this.invalidFileFormat = false;
         } else {
           this.invalidFileFormat = true;
         }
@@ -151,9 +143,25 @@ export default {
 
       waitForElements();
     },
+
+
     createChart(data, key, title, element) {
+      const monthNames = {
+        January: 'Janeiro',
+        February: 'Fevereiro',
+        March: 'Março',
+        April: 'Abril',
+        May: 'Maio',
+        June: 'Junho',
+        July: 'Julho',
+        August: 'Agosto',
+        September: 'Setembro',
+        October: 'Outubro',
+        November: 'Novembro',
+        December: 'Dezembro'
+      };
       const chartData = Object.entries(data).map(([month, metrics]) => {
-        return { month, value: metrics[key] };
+        return { month: monthNames[month], value: metrics[key] };
       });
 
       const margin = { top: 20, right: 30, bottom: 60, left: 60 };
@@ -243,7 +251,7 @@ export default {
 
       const chartData = {};
       const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-      const allChartData = []; 
+      const allChartData = [];
       this.selectedMetrics.forEach((metric) => {
         chartData[metric] = Object.entries(this.response.monthly_metrics).map(([month, metrics]) => {
           const value = metrics[metric.toLowerCase().replace(' ', '_')];
@@ -392,5 +400,5 @@ export default {
 </script>
 
 <style scoped>
-  @import "@/components/UploadStyles.css";
+@import "@/components/UploadStyles.css";
 </style>
