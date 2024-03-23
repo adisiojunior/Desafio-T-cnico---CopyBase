@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_URL = process.env.VUE_APP_API_ULR_PROD;
+const API_URL = process.env.VUE_APP_API_URL_PROD;
 
 export default {
   uploadFile(formData) {
