@@ -43,3 +43,37 @@ Adísio Fialho Júnior
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Frontend: Visualização e Funcionalidades
+
+A seguir, apresento o layout do frontend, acompanhado de algumas imagens:
+
+### Input de Arquivo:
+
+- **Input de Arquivo:** Atente para o botão "Mostrar Dados", que está desabilitado e só se torna ativo quando um arquivo é carregado.
+![Alt text](image.png)
+
+- **Input de Arquivo:** Se o tipo de arquivo selecionado for diferente dos formatos aceitos, uma mensagem de erro é exibida e o botão fica desabilitado.
+![Alt text](image-1.png)
+
+- **Input de Arquivo:** Se o tipo de arquivo selecionado for correto, o botão vai ser ativado.
+![Alt text](image-1.png)
+
+- **Input de Arquivo:** Se não tiver um arquivo selecionado, ou estiver com um arquivo de erro, o mesmo vai mostrar um mensagem para selecionar um arquivo para visualizar os dados. .
+![Alt text](image-2.png)
+
+### Primeiro Card:
+
+- **Gráficos Dinâmicos:** Possibilitam a seleção de até dois valores para comparação. O botão "Limpar Seleção" permite a escolha de novas variáveis para comparação.
+![Alt text](image-3.png)
+
+- **Gráficos de MRR Total e Churn Rate Total:** São exibidos para cada mês.
+![Alt text](image-4.png)
+
+### Segundo Card:
+
+- **Dados:** Incluem o título do arquivo, a taxa total, o MRR total, o número de linhas processadas, o total de linhas da planilha, o total de pessoas ativas, o total de cancelamentos, o total de atrasos e o total de cancelamentos de teste.
+![Alt text](image-5.png)
+
+Este é o layout e as funcionalidades oferecidas pelo frontend do aplicativo.
+
