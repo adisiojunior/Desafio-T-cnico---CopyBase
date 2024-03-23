@@ -25,9 +25,10 @@ See [Vue CLI Configuration Reference](https://cli.vuejs.org/config/).
 ## Usage
 
 1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Run the development server with `npm run serve`.
-4. Access the application in your browser at the specified address.
+2. Install dependencies using `npm install`.,
+3. If the above commando doesn't work, try using `npm install --legacy-peer-deps`.
+4. Run the development server with `npm run serve`.
+5. Access the application in your browser at the specified address.
 
 ## Additional Information
 
