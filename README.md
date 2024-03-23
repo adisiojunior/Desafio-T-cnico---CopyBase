@@ -77,3 +77,6 @@ A seguir, apresento o layout do frontend, acompanhado de algumas imagens:
 
 Este é o layout e as funcionalidades oferecidas pelo frontend do aplicativo.
 
+## Deploy
+- **Frontend:** https://upload-project.vercel.app/
+- **Backend:** https://subscription-analytics-project.vercel.app/api/upload/
