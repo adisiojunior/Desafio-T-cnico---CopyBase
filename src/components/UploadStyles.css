@@ -1,0 +1,164 @@
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: math;
+}
+
+.file-upload {
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-upload-header h3 {
+  margin: 0;
+  font-family: math;
+  align-self: self-start;
+}
+
+.file-upload-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-file-input {
+  display: flex;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  gap: 10px;
+  flex-direction: row-reverse;
+  font-family: math;
+}
+
+.upload-button {
+  display: flex;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  align-self: flex-end;
+  gap: 8px;
+  flex-direction: row-reverse;
+  font-family: math;
+}
+
+.upload-button.disabled {
+  background-color: #999;
+}
+
+
+.file-input {
+  display: none;
+}
+
+.file-name {
+  margin-left: 10px;
+}
+
+.upload-button i {
+  margin-left: 5px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 600px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  width: calc(50% - 8px);
+  height: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.upload-button.disabled {
+  background-color: #999;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.metric-buttons {
+  margin-bottom: 20px;
+}
+
+.metric-buttons button {
+  background-color: transparent;
+  color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.metric-buttons button.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.metric-buttons button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.metric-buttons button:last-child {
+  margin-right: 0;
+}
+
+.chart-container {
+  width: 100%;
+  height: 600px;
+}
+
+.clear-button {
+  background-color: transparent;
+  color: black;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.info-item {
+  text-align: left;
+  margin-bottom: 10px;
+}
+

@@ -1,24 +1,17 @@
 <template>
   <div class="file-upload-wrapper">
-    <div class="file-upload">
-      <div class="file-upload-header">
-        <h3>Adicione o arquivo:</h3>
-      </div>
-      <div class="file-upload-container">
-        <label for="file-input" class="custom-file-input">
-          <i class="fas fa-upload"></i> Escolher Arquivo
-        </label>
-        <input id="file-input" type="file" @change="handleFileUpload" class="file-input">
-        <span v-if="file" class="file-name">{{ file.name }}</span>
-      </div>
-      <button @click="uploadFile" class="upload-button"
-        :disabled="!file || file.name === lastUploadedFileName || invalidFileFormat"
-        :class="{ 'disabled': !file || file.name === lastUploadedFileName || invalidFileFormat }">
-        <i class="fas fa-paper-plane"></i> Mostrar dados
-      </button>
-
-      <p v-if="invalidFileFormat" class="error-message">Por favor, adicione o formato correto (.xlsx ou .csv).</p>
-    </div>
+    <FileUploadForm
+      header="Adicione o arquivo:"
+      buttonText="Escolher Arquivo"
+      uploadButtonText="Mostrar dados"
+      errorMessage="Por favor, adicione o formato correto (.xlsx ou .csv)."
+      inputId="file-input"
+      :handleFileUpload="handleFileUpload"
+      :uploadFile="uploadFile"
+      :file="file"
+      :lastUploadedFileName="lastUploadedFileName"
+      :invalidFileFormat="invalidFileFormat"
+    />
 
     <div v-if="!response">
       <div class="dashboard">
@@ -71,6 +64,9 @@
     </div>
   </div>
 
+  <FileInfo :response="response" :file="file" />
+
+
 </template>
 
 <script>
@@ -78,11 +74,18 @@ import ApiService from '@/services/ApiService';
 import '@fortawesome/fontawesome-free/css/all.css';
 import * as d3 from 'd3';
 import ElementReadyDirective from "@/directives/ElementReadyDirective";
+import FileUploadForm from "@/components/FileUploadForm.vue";
+import { formatMRR } from "@/utils/formatUtils";
+import FileInfo from "@/components/FileInfo.vue";
 
 export default {
   name: 'FileUpload',
   directives: {
     ElementReadyDirective
+  },
+  components: {
+    FileUploadForm,
+    FileInfo
   },
   data() {
     return {
@@ -197,14 +200,16 @@ export default {
         .attr('width', x.bandwidth())
         .attr('height', d => height - y(d.value))
         .attr('fill', 'steelblue')
-        .on('mouseover', function (d) {
+        .on('mouseover', function () {
+          const d = d3.select(this).datum();
           d3.select(this).attr('fill', 'orange');
+          const formated = formatMRR(d.value)
           svg.append('text')
             .attr('id', 'tooltip')
             .attr('x', x(d.month) + x.bandwidth() / 2)
             .attr('y', y(d.value) - 5)
             .attr('text-anchor', 'middle')
-            .text(d.value);
+            .text(formated);
         })
         .on('mouseout', function () {
           d3.select(this).attr('fill', 'steelblue');
@@ -387,163 +392,5 @@ export default {
 </script>
 
 <style scoped>
-.file-upload-wrapper {
-  display: flex;
-  flex-direction: column;
-  font-family: math;
-}
-
-.file-upload {
-  padding: 40px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-}
-
-.file-upload-header h3 {
-  margin: 0;
-  font-family: math;
-  align-self: self-start;
-}
-
-.file-upload-container {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.custom-file-input {
-  display: flex;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  text-align: center;
-  gap: 10px;
-  flex-direction: row-reverse;
-  font-family: math;
-}
-
-.upload-button {
-  display: flex;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  margin-top: 10px;
-  align-self: flex-end;
-  gap: 8px;
-  flex-direction: row-reverse;
-  font-family: math;
-}
-
-.upload-button.disabled {
-  background-color: #999;
-}
-
-
-.file-input {
-  display: none;
-}
-
-.file-name {
-  margin-left: 10px;
-}
-
-.upload-button i {
-  margin-left: 5px;
-}
-
-.chart-container {
-  width: 100%;
-  height: 600px;
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.card {
-  width: calc(50% - 8px);
-  height: auto;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.error-message {
-  color: red;
-  margin-top: 5px;
-}
-
-.upload-button.disabled {
-  background-color: #999;
-}
-
-.full-width {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
-.metric-buttons {
-  margin-bottom: 20px;
-}
-
-.metric-buttons button {
-  background-color: transparent;
-  color: #007bff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  padding: 8px 16px;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.metric-buttons button.selected {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.metric-buttons button:hover {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.metric-buttons button:last-child {
-  margin-right: 0;
-}
-
-.chart-container {
-  width: 100%;
-  height: 600px;
-}
-
-.clear-button {
-  background-color: transparent;
-  color: black;
-  border-radius: 8px;
-  padding: 8px 16px;
-  cursor: pointer;
-  background-color: white;
-}
-
+  @import "@/components/UploadStyles.css";
 </style>
